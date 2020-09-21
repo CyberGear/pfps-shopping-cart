@@ -2,35 +2,41 @@ package lt.markavl.shopingcart.algebras
 
 import java.util.UUID
 
-import eu.timepit.refined.types.string.NonEmptyString
-import io.estatico.newtype.macros.newtype
-import squants.market.Money
+import eu.timepit.refined.types.string._
+import io.estatico.newtype.macros._
+import lt.markavl.shopingcart.algebras.brands._
+import lt.markavl.shopingcart.algebras.categories._
+import squants.market._
 
-@newtype case class ItemId(value: UUID)
-@newtype case class ItemName(value: NonEmptyString)
-@newtype case class ItemDescription(value: NonEmptyString)
+object items {
 
-case class Item(
-  id: ItemId,
-  name: ItemName,
-  description: ItemDescription,
-  price: Money,
-  brand: Brand,
-  category: Category)
+  trait Items[F[_]] {
+    def findAll: F[List[Item]]
+    def find(brand: BrandName): F[List[Item]]
+    def find(id: ItemId): F[Option[Item]]
+    def create(item: CreateItem): F[Unit]
+    def update(item: UpdateItem): F[Unit]
+  }
 
-case class CreateItem(
-  name: ItemName,
-  description: ItemDescription,
-  price: Money,
-  brand: Brand,
-  category: Category)
+  @newtype case class ItemId(value: UUID)
+  @newtype case class ItemName(value: NonEmptyString)
+  @newtype case class ItemDescription(value: NonEmptyString)
 
-case class UpdateItem(id: ItemId, price: Money)
+  case class Item(
+    id: ItemId,
+    name: ItemName,
+    description: ItemDescription,
+    price: Money,
+    brand: Brand,
+    category: Category)
 
-trait Items[F[_]] {
-  def findAll: F[List[Item]]
-  def find(brand: BrandName): F[List[Item]]
-  def find(id: ItemId): F[Option[Item]]
-  def create(item: CreateItem): F[Unit]
-  def update(item: UpdateItem): F[Unit]
+  case class CreateItem(
+    name: ItemName,
+    description: ItemDescription,
+    price: Money,
+    brand: Brand,
+    category: Category)
+
+  case class UpdateItem(id: ItemId, price: Money)
+
 }
