@@ -2,12 +2,11 @@ package lt.markavl.shopingcart.algebras
 
 import java.util.UUID
 
-import eu.timepit.refined.types.numeric.PosInt
-import io.estatico.newtype.macros.newtype
-import lt.markavl.shopingcart.algebras.auth.UserId
-import lt.markavl.shopingcart.algebras.items.Item
-import lt.markavl.shopingcart.algebras.items.ItemId
-import squants.market.Money
+import eu.timepit.refined.types.numeric._
+import io.estatico.newtype.macros._
+import lt.markavl.shopingcart.algebras.auth._
+import lt.markavl.shopingcart.algebras.items._
+import squants.market._
 
 object shoppingCart {
 

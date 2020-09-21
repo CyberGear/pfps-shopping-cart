@@ -12,8 +12,8 @@ object items {
 
   trait Items[F[_]] {
     def findAll: F[List[Item]]
-    def find(brand: BrandName): F[List[Item]]
-    def find(id: ItemId): F[Option[Item]]
+    def findByBrand(brand: BrandName): F[List[Item]]
+    def findById(id: ItemId): F[Option[Item]]
     def create(item: CreateItem): F[Unit]
     def update(item: UpdateItem): F[Unit]
   }

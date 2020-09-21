@@ -2,8 +2,8 @@ package lt.markavl.shopingcart.algebras
 
 import java.util.UUID
 
-import eu.timepit.refined.types.string.NonEmptyString
-import io.estatico.newtype.macros.newtype
+import eu.timepit.refined.types.string._
+import io.estatico.newtype.macros._
 
 object categories {
 
